@@ -1,4 +1,4 @@
-package br.com.cauequeiroz;
+package br.com.cauequeiroz.chat;
 
 import java.io.IOException;
 import java.io.PrintStream;
