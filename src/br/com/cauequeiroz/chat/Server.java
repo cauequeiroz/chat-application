@@ -15,18 +15,14 @@ public class Server {
 			ServerSocket server = new ServerSocket(8080);
 			System.out.println("[Server] Server running at port 8080...");
 			
-			Socket client = server.accept();
-			System.out.println("[Server] Client connected!");
-			
-			Scanner clientMessages = new Scanner(client.getInputStream());
-			
-			while (clientMessages.hasNextLine()) {
-				System.out.println(clientMessages.nextLine());
+			while(true) {
+				Socket client = server.accept();
+				System.out.println("[Server] Client connected!");
+				
+				ClientManager clientManager = new ClientManager(client);
+				
+				new Thread(clientManager).start();
 			}
-			
-			clientMessages.close();
-			client.close();
-			server.close();
 			
 		} catch (IOException e) {
 			System.out.println("[Error] Server error: " + e.getMessage());
