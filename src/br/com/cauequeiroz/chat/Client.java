@@ -10,10 +10,15 @@ public class Client {
 		
 		System.out.println("Chat Application (Client)\n\n");
 		
+		System.out.println("Type your nickname:");
+		Scanner getNickname = new Scanner(System.in);
+		String nickname = getNickname.nextLine();
+//		getNickname.close();
+		System.out.println("\n----------\n");
+		
 		try {
 		
 			Socket client = new Socket("127.0.0.1", 8080);
-			System.out.println("[Client] Client connected!");
 			
 			ServerManager serverManager = new ServerManager(client);
 			new Thread(serverManager).start();
@@ -23,7 +28,7 @@ public class Client {
 			Scanner keyboard = new Scanner(System.in);
 			
 			while (keyboard.hasNextLine()) {
-				String message = keyboard.nextLine();
+				String message = "[" + nickname + "] " + keyboard.nextLine();
 				clientMessages.println(message);				
 			}
 			

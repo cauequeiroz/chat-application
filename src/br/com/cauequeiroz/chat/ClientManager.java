@@ -24,7 +24,7 @@ public class ClientManager implements Runnable {
 			Scanner clientMessages = new Scanner(client.getInputStream());
 			
 			while (clientMessages.hasNextLine()) {
-				ClientManager.notifyAllClients("[" + client + "] " + clientMessages.nextLine());
+				ClientManager.notifyAllClients(clientMessages.nextLine());
 			}
 			
 			clientMessages.close();
