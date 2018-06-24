@@ -15,7 +15,10 @@ public class Client {
 			Socket client = new Socket("127.0.0.1", 8080);
 			System.out.println("[Client] Client connected!");
 			
-			PrintStream clientMessages = new PrintStream(client.getOutputStream());
+			ServerManager serverManager = new ServerManager(client);
+			new Thread(serverManager).start();
+			
+			PrintStream clientMessages = new PrintStream(client.getOutputStream());			
 			
 			Scanner keyboard = new Scanner(System.in);
 			
@@ -25,8 +28,6 @@ public class Client {
 			}
 			
 			keyboard.close();
-			clientMessages.close();
-			client.close();			
 			
 		} catch (IOException e) {
 			System.out.println("[Error] Client error: " + e.getMessage());
