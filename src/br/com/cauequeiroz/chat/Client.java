@@ -8,13 +8,11 @@ import java.util.Scanner;
 public class Client {
 	public static void main(String[] args) {
 		
-		System.out.println("Chat Application (Client)\n\n");
+		System.out.println("Chat Application (Client)\n");
 		
 		System.out.println("Type your nickname:");
-		Scanner getNickname = new Scanner(System.in);
-		String nickname = getNickname.nextLine();
-//		getNickname.close();
-		System.out.println("\n----------\n");
+		String nickname = new Scanner(System.in).nextLine().toLowerCase();
+		System.out.println("----------\n");
 		
 		try {
 		
@@ -23,7 +21,10 @@ public class Client {
 			ServerManager serverManager = new ServerManager(client);
 			new Thread(serverManager).start();
 			
-			PrintStream clientMessages = new PrintStream(client.getOutputStream());			
+			PrintStream clientMessages = new PrintStream(client.getOutputStream());
+			
+			String welcomeMessage = "[Server] " + nickname + " joined the chat.";
+			clientMessages.println(welcomeMessage);
 			
 			Scanner keyboard = new Scanner(System.in);
 			

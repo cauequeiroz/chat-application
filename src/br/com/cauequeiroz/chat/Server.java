@@ -7,7 +7,7 @@ import java.net.Socket;
 public class Server {
 	public static void main(String[] args) {
 		
-		System.out.println("Chat Application (Server)\n\n");
+		System.out.println("Chat Application (Server)\n");
 		
 		try {
 			
